@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body>
+{% csrf_token %}
+<header class='top_header'>
+    <h1>resultlab</h1>
+</header>
+<div class="student_container">
+    <div class="result_heading">
+        <div>
+            <span><h6>Name of School: <span><b>{{ school_name }}</b></span></h6> </span><br/>
+            <span><h6>Class: <span><b>{{ classz }}</b></span></h6> </span><br/>
+            <span><h6>Current Term: <span><b>{{ term }}</b></span></h6> </span><br/>
+            <span><h6>Current Session: <span><b>{{ session }}</b></span></h6> </span><br/>
+            <span><h6>Date Prepared: <span><b>{{ date }}</b></span></h6> </span><br/>
+        </div>
+        <div>
+            <img src="{{ school.logo.url }}" id="img" style="width: 180px; height: 180px;"/>
+        </div>
+    </div>
+    <table>
+        <tr class="student_row">
+            <th>S/N</th>
+            <th>REG NO</th>
+            <th>FULLNAME</th>
+            {% for subject in subjects %}
+                <th colspan="2">{{ subject }}</th>
+            {% endfor %}
+            <th colspan="5">OVERALL GRADING</th>
+        </tr>
+        <tr class="student_row">
+            <th></th>
+            <th></th>
+            <th></th>
+            {% for subject in subjects %}
+                <th>score</th>
+                <th>pos</th>
+            {% endfor %}
+            <th>score</th>
+            <th>average</th>
+            <th>pos</th>
+            <th>attendance</th>
+            <th>remark</th>
+        </tr>
+        <tbody id='tbody'>
+
+        </tbody>
+    </table>
+    <input type="submit" value="Go Back" style="width: 100%" id="history_back"/>
+</div>
+<script src="{% static 'js/individual-result.js' %}"></script>
+</body>
+</html>

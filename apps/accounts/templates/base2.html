@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}ResultLab {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+</head>
+<body>
+  <article class="article">
+    <div class="account_container">
+      <header>
+        <h3>{% block heading %} {% endblock %}</h3>
+      </header>
+      {% block centered %} {% endblock %}
+    </div>
+  </article>
+</body>
+</html>

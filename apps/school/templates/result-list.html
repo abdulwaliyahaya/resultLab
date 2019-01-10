@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Result | ResultLab{% endblock %}
+{% block areaTitle %}Result Area{% endblock %}
+{% block main_content %}
+    {% csrf_token %}
+    <div class="student_container">
+        <div class="student_search">
+        <form id="search_student" style="width: 400px;">
+            {% csrf_token %}
+            <select id="student_class" name="classz">
+            <option value=""></option>
+                {% if school.classes %}
+                    {% for class in school.classes.all %}
+                        <option value="{{ class.name }}">{{ class.name }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+            <input type="submit" value="Search" id="search">
+        </form>
+        </div>
+        <form id="deleteForm">
+            <select name="option">
+                <option value="deleteSelected">delete selected</option>
+            </select>
+            <input type="submit" value="OK!" id="deleteSelectedBtn"/>
+        </form>
+         <table>
+            <tr class="student_row">
+                <th><input type="checkbox" id="selectCheckbox"/></th>
+                <th>S/N</th>
+                <th>NAME</th>
+                <th>CLASS</th>
+                <th>TERM</th>
+                <th>SESSION</th>
+            </tr>
+            <tbody id='tbody'>
+
+            </tbody>
+         </table>
+         <div class="paging">
+
+        </div>
+    </div>
+<script src="{% static 'js/result-list.js' %}"></script>
+{% endblock %}

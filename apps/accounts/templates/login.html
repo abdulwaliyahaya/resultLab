@@ -1,0 +1,16 @@
+﻿{% extends 'base2.html' %}
+{% block heading %}ResultLab Login {% endblock %}
+{% block centered %}
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  {% if form.errors %}
+  <div class="auth_error">Your username and password didn't match. Please try again.</div>
+  {% endif %}
+  {{form.username.label_tag}}<br/>
+  {{form.username}}<br/><br/>
+  {{form.password.label_tag}}<br/>
+  {{form.password}}<br/><br/>
+  <input type="submit" value="Login"/><br/><br/>
+  Forgot Password? <a href="{% url 'recover_password' %}"> Click Here</a>
+</form>
+{% endblock %}

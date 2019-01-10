@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Settings | ResultLab{% endblock %}
+{% block areaTitle %}Setting Area{% endblock %}
+{% block main_content %}
+   <ul class="set-panel">
+        <li data-name="namelogo"><h5><img src="{% static 'img/camera_green.png' %}"/> School Profile</h5></li>
+        <li data-name="subject"><h5><img src="{% static 'img/subject_green.png' %}"/>  Subject Setting</h5></li>
+       <li data-name="class"><h5><img src="{% static 'img/class_green.png' %}"/>  Class Setting</h5></li>
+        <li data-name="term"><h5><img src="{% static 'img/term_green.png' %}"/>  Current Term</h5></li>
+   </ul>
+    <div id="setting-div">
+        <header>
+            <h5></h5>
+            <h3 id="setting_close">x</h3>
+        </header>
+        <div>
+            <div id="school_name_logo">
+                {% if school.logo %}
+                    <img src="{{ school.logo.url }}" id="img"/>
+                {% endif %}
+                <form id="form_id">
+                    {{ name_logo_form.logo.label_tag }}<br/>
+                    {{ name_logo_form.logo }}<br/><br/>
+                    {{ name_logo_form.name.label_tag }}<br/>
+                    <input type="text" name="name" required id="id_name" value="{{ school.name }}"><br/><br/>
+                    {{ name_logo_form.address.label_tag }}<br/>
+                    <input type="text" name="address" required id="id_address" value="{{ school.address }}"><br/><br/>
+                    <input type="submit" value="Save" id="namelogo_submit"/>
+                </form>
+
+            </div>
+            <div id="school_subject">
+                <div id="subjects">
+                    {% if school.subjects %}
+                        {% for subject in school.subjects.all %}
+                            <li class="subject_list">{{ subject.name }}<span class="delete_subject" data-name="{{ subject.name }}">x</span></li>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <form id="add_subject_form">
+                    <br/>
+                    <input type="text" id="subject_id" placeholder="Enter subject name to add"/><br/><br/>
+                    <input type="submit" value="Add Subject" id="subject_submit"/>
+                </form>
+            </div>
+            <div id="school_class">
+                <div id="classes">
+                    {% if school.classes %}
+                        {% for class in school.classes.all %}
+                            <li class="class_list">{{ class.name }}<span class="delete_subject" data-name="{{ class.name }}">x</span> </li>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <form id="add_class_form">
+                    <br/>
+                    <input type="text" id="class_id" placeholder="Enter class name to add"/><br/><br/>
+                    <input type="submit" value="Add Class" id="class_submit"/>
+                </form>
+            </div>
+            <div id="current_term">
+                <form>
+                    <label for="session">Session</label>
+                    <input type="text" id="current_session" name="session"/>
+                    <span><br/><br/></span>
+                    <select id="selected_term">
+                        <option value="first term">First Term</option>
+                        <option value="second term">Second Term</option>
+                        <option value="third term">Third Term</option>
+                    </select>
+                    <span>
+                        <br/><br/>
+                        <input type="submit" id="term_submit" value="Save Change"/>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

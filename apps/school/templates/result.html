@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Result | ResultLab{% endblock %}
+{% block areaTitle %}Result Area{% endblock %}
+{% block main_content %}
+    <div class="main_result_div">
+    {% csrf_token %}
+        <p><a href="{% url 'result-list' %}">View Class Result Sheet</a> </p><br/><br/>
+        <h4 style="text-decoration: none; color: black;">or</h4><br/>
+        <h6 style="text-decoration: none; color: black;">prepare new result below</h6>
+    <form id="resultHomeForm">
+        <label for="session">Current Session</label>
+        <input type="text" name="session" id="resultSession" value="{{ school.current_session }}" disabled/>
+        <label for="term">Current Term</label>
+        <input type="text" name="term" id="resultTerm" value="{{ school.current_term }}" disabled/><br/>
+        <label for="student_class">Class</label><br/>
+        <select name="classz" id="studentClass">
+            {% if school.classes %}
+                {% for class in school.classes.all %}
+                    <option value="{{ class.name }}">{{ class.name }}</option>
+                {% endfor %}
+            {% endif %}
+        </select><br/>
+        <label for="student_class">Subjects (hold down the control key and click subjects to select)</label><br/>
+        <select name="subjects" id="studentSubject" multiple>
+            {% if school.subjects %}
+                {% for subject in school.subjects.all %}
+                    <option value="{{ subject.name }}">{{ subject.name }}</option>
+                {% endfor %}
+            {% endif %}
+        </select><br/>
+        <input type="submit" value="Goto result entry" id="submitPreBtn"/>
+    </form>
+    </div>
+    <script src="{% static 'js/result.js' %}"></script>
+{% endblock %}

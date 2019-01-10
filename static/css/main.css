@@ -1,0 +1,535 @@
+﻿html, body, article {
+    height: 100%;
+    min-height: 100%;
+    background: #ECF0F5;
+}
+a, a:hover {
+    text-decoration: none;
+    color: #2e8b57;
+}
+a:hover {
+    text-decoration: underline;
+}
+input[type=text], input[type=password], input[type=email] {
+    width: 300px;
+    height: 35px;
+    border-radius: 5px;
+    border-style: solid;
+}
+#header_home {
+    position: fixed;
+     color: #2e8b57;
+     width: 100%;
+     height: 50px;
+     text-transform: uppercase;
+     font-family: helvica;
+    background: #fff;
+ }
+#home_nav {
+    position: fixed;
+    right: 60px;
+    top: 13px;
+}
+#home_nav ul {
+    list-style: none;
+}
+#home_nav ul li{
+    display: inline-block;
+}
+#home_nav ul li a{
+
+    border: 2px solid #2e8b57;
+    border-radius: 10px;
+    color: #2e8b57;
+    padding: 5px;
+    margin: 3px;
+    text-decoration: none;
+}
+#home_nav ul li a:hover{
+    background: #2e8b57;
+    color: #fff;
+}
+#header_home h1{
+    font-size: 30px;
+    margin: auto;
+    position: relative;
+    top: 7px;
+    left: 40px;
+    font-weight: bold;
+}
+#home_article{
+    position: relative;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fefefe;
+    overflow: hidden;
+}
+#intro_section {
+    width: 100%;
+    height: 400px;
+    background: #2e8b57;
+    color: #fff;
+    font-family: "Helvetica Neue";
+}
+#intro_section h1{
+    font-weight: bold;
+    font-size: 25px;
+}
+#intro_section div{
+    position: relative;
+    top: 30px;
+    left: 30px;
+}
+#homepage_login{
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    background: #fff;
+    padding: 10px;
+}
+#homepage_login header{
+    background: #2e8b57;
+    color: #fff;
+    text-align: center;
+}
+#homepage_login header h5{
+    padding: 5px;
+}
+#bottom_row {
+    position: relative;
+    top: 0;
+    left: 2px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+}
+#bottom_row div {
+    background: #fff;
+    border: 1px solid #2e8b57;
+    margin: 10px;
+    border-radius: 20px;
+    height: 250px;
+}
+#home_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#footer_div a {
+    display: block;
+    padding: 5px 10px;
+    background: #2e8b57;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+}
+.reg_success_button {
+    display: flex;
+    background: #2e8b57;
+    justify-content: center;
+    align-items: center;
+    width: 310px;
+    height: 35px;
+    text-decoration: none;
+    color: #fff;
+    border-right: 5px;
+    border-style: solid;
+    margin-left: 25px;
+    margin-top: 30px;
+}
+.reg_container {
+    margin: 10px;
+    text-align: center;
+}
+input[type=submit] {
+    width: 310px;
+    height: 35px;
+    background: #2e8b57;
+    color: #fff;
+    border-radius: 5px;
+    border-style: solid;
+}
+article {
+    display: flex;
+}
+ #sidebar, #mainbar {
+     flex: 1;
+ }
+ #sidebar {
+     background: #222D32;
+     padding: 0;
+ }
+ #sidebar header, .top_header {
+     background: #2e8b57;
+ }
+ #sidebar header, #mainbar header, .top_header{
+     color: #fff;
+     width: 100%;
+     height: 50px;
+     line-height: 50px;
+     text-transform: uppercase;
+     font-family: "Helvetica Neue";
+ }
+  #sidebar header h1, #mainbar header h1 {
+     font-size: 20px;
+     text-align: center;
+     margin: auto;
+     position: relative;
+     top: 10px;
+     font-weight: bold;
+ }
+  .top_header h1{
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 50px;
+      margin-left: 10px;
+  }
+ #mainbar header {
+     background: #2e8b57;
+ }
+ #mainbar {
+     background: #ECF0F5;
+     padding: 0;
+ }
+ #mainbar header h1 {
+     text-align: left;
+     margin-left: 10px;
+ }
+ .pro_pic {
+     width: 50px;
+     height: 50px;
+     border-radius: 50px;
+     margin: 0 33%;
+     margin-bottom: 3px;
+ }
+ #profile {
+     text-align: center;
+     background: #2C3B41;
+     padding: 20px 0;
+     border-bottom: 2px solid #2e8b57;
+ }
+ #profile a {
+     color: #fff;
+ }
+ #navigation {
+     width: 100%;
+     position: absolute;
+     top: 195px;
+     left: 1px;
+     list-style: none;
+     padding: 0;
+ }
+ #navigation li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    list-style: none;
+    opacity: 0.4;
+ }
+ #navigation li img {
+     vertical-align: middle;
+ }
+ #navigation li a:hover {
+     background: #2C3B41;
+     opacity: 1;
+     border-left: 4px solid #2e8b57;
+ }
+ #navside {
+     padding: 0;
+     position: absolute;
+     right: 60px;
+     top: -5px;
+     list-style: none;
+ }
+ #navside li {
+     display: inline-block;
+     margin-right: 10px;
+     padding: 3px;
+ }
+ #navside li:hover {
+     background: #2e8b57;
+ }
+ .article {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+ .account_container {
+     border: 2px solid #2e8b57;
+     margin-top: 0;
+     width: 400px;
+     background: #fff;
+ }
+ .account_container header {
+     background: #2e8b57;
+     color: #fff;
+     position: relative;
+     top: -20px;
+ }
+ .account_container header h3 {
+     padding: 10px;
+     text-align: center;
+ }.account_container form {
+      position: relative;
+      left: 40px;
+      margin-bottom: 30px;
+  }
+  .auth_error {
+      width: 70%;
+      background: #DD4B39;
+      border: 1px solid red;
+      padding: 3px;
+  }
+  .main_content {
+      position: relative;
+      top: 10px;
+      left: 10px;
+  }
+.set-panel {
+    list-style: none;
+    padding: 0;
+}
+.set-panel li{
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 30px;
+    width: 98.5%;
+}
+.set-panel li:hover {
+    color: #2e8b57;
+}
+.set-panel h5{
+    margin-left: 30px;
+}
+#setting-div, #add_student_div {
+    display: none;
+    width: 500px;
+    background: #fff;
+    border: 2px solid #2e8b57;
+    position: absolute;
+    top: 0;
+    left: 30%;
+    padding-bottom: 31px;
+}
+#setting-div header, #add_student_div header {
+    text-align: center;
+}
+#setting-div header h5, #add_student_div header h5 {
+    position: relative;
+    top: 12px;
+}
+#setting-div header h3, #add_student_div header h3 {
+    position: relative;
+    top: -25px;
+    left: 450px;
+    border: 1px solid #fff;
+    width: 40px;
+}
+#setting-div header h3:hover, #add_student_div header h3:hover {
+    background: red;
+    cursor: pointer;
+}
+#img {
+    height: 200px;
+    width: 200px;
+}
+#school_name_logo,
+#school_subject,
+#current_term,
+#school_class,
+#add_student_frame,
+#add_students_frame,
+#promote_students_frame {
+    margin: 20px;
+    display: none;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#current_term form {
+    margin: 20px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.subject_list, .class_list {
+    border: 1px solid #2e8b57;
+    border-radius: 10px;
+    padding: 2px 20px;
+    margin: 2px;
+    background: #fff;
+    list-style: none;
+    display: inline-block;
+}
+.delete_subject {
+    position: relative;
+    right: 0;
+    top: -1px;
+    color: red;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.topbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+.topbuttons button {
+    background: #2e8b57;
+    height: 40px;
+    width: 200px;
+    color: #fff;
+    border-radius: 5px;
+    border-style: solid;
+}
+.student_search  {
+    background: #fff;
+    padding: 30px;
+    width: 98.5%;
+}
+#search_student {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 58%;
+}
+.student_container {
+    background: #fff;
+    width: 98.5%;
+    margin-top: 5px;
+}
+table{
+    width: 100%;
+}
+table, th, td{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: left;
+}
+#tbody tr:nth-child(even), table tr{
+    background: #f1f1f1;
+}
+#tbody tr:nth-child(odd){
+    background: #fff;
+}
+#tbody tr:hover {
+    background: #2e8b57;
+    color: #fff;
+}
+#suggestionBox {
+    background: #fff;
+    position: absolute;
+    top: 122px;
+    left: 30px;
+    width: 23.5%;
+    display: none;
+    flex-direction: column;
+}
+#suggestionBox p {
+    margin: 0;
+    padding-bottom: 0;
+    padding-left: 5px;
+    cursor: pointer;
+}
+#suggestionBox p:nth-child(odd){
+    background: #f1f1f1;
+}
+#suggestionBox p:hover{
+    background: #222D32;
+    color: #fff;
+}
+.paging {
+    margin-top: 10px;
+}
+.page_number {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    background: #2e8b57;
+    color: #fff;
+}
+.page_number:hover, .current_page:hover {
+    background: #222D32;
+    color: #fff;
+    text-decoration: none;
+}
+.current_page {
+    background: #222D32;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+}
+#deleteForm {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+#deleteForm input[type=submit] {
+    width: 50px;
+}
+#deleteForm select{
+    height: 35px;
+}
+.main_result_div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    background: #fff;
+    color: #2e8b57;
+    position: relative;
+    left: -20px;
+    width: 97%;
+    padding-bottom: 100px;
+    margin: 0 auto;
+}
+.main_result_div p {
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid #2e8b57;
+}
+#resultHomeForm {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    border: 1px solid #2e8b57;
+    padding: 5px;
+}
+#studentSubject {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+.spreadSheet {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.result_heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+}
+.result_heading h6 {
+    margin: 0;
+    padding: 0;
+}

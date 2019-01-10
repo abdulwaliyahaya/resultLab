@@ -1,0 +1,6 @@
+{% extends 'base2.html' %}
+{% block heading %}Logged Out Successfully {% endblock %}
+{% block centered %}
+    <div class="reg_container">Thanks for spending some quality time with us today.<br/>
+    <a href="{% url 'login' %}" class="reg_success_button">Login Again!</a></div>
+{% endblock %}

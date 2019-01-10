@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Students | ResultLab{% endblock %}
+{% block areaTitle %}Student Area{% endblock %}
+{% block main_content %}
+    <div class="topbuttons">
+        <button class="add_student" data-name="add_student">Add Student</button>
+        <button class="add_student" data-name="add_students">Add Students (csv file)</button>
+        <button class="add_student" data-name="promote_students">Promote Student</button>
+    </div>
+    <div id="add_student_div">
+         <header>
+            <h5></h5>
+            <h3 id="student_close">x</h3>
+        </header>
+        <div>
+        <div id="add_student_frame">
+            <form id="student_data">
+                <label for="reg_id">Registration Number</label><br/>
+                <input type="text" name="reg_id"  id="reg_id" required><br/>
+                <label for="first_name">First Name</label><br/>
+                <input type="text" name="first_name" id="first_name" required><br/>
+                <label for="last_name">Last Name</label><br/>
+                <input type="text" name="last_name" id="last_name" required><br/>
+                <label for="email">Email Address</label><br/>
+                <input type="text" name="email" id="email" required><br/>
+                <label for="gender">Gender</label><br/>
+                <select name="gender">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select><br/>
+                <label for="student_class">Class</label><br/>
+                <select name="classz">
+                    {% if school.classes %}
+                        {% for class in school.classes.all %}
+                            <option value="{{ class.name }}">{{ class.name }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select><br/>
+                <label for="home_address">Home Address</label><br/>
+                <input type="text" name="address" id="address" required><br/>
+                <label for="Parent_phone">Parent Phone</label><br/>
+                <input type="text" name="parent_phone" id="parent_phone" required><br/><br/>
+                <input type="submit" id="add_student_btn" value="Add Student"/>
+            </form>
+        </div>
+        <div id="add_students_frame">
+            <form id="addStudentCsvForm">
+                <label for="student_class">Class of Students</label><br/>
+                <select name="classz">
+                    {% if school.classes %}
+                        {% for class in school.classes.all %}
+                            <option value="{{ class.name }}">{{ class.name }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select><br/>
+            <input type="file" name="csvfile" required><br/>
+            <input type="submit" id="addStudentsBtn" value="Add students"/>
+            </form>
+        </div>
+        <div id="promote_students_frame">
+            <p>Enter the registration number of students repeating, separated by comma (e.g uhs/34,uhs/37,). All other
+            students would be promoted to the next class</p>
+            <form id="repeatingStudentsForm">
+                <label for="repeating_students">Repeating students (separated by comma</label>
+                <textarea name="repeatingStudents"></textarea><br/>
+                <input type="submit" value="promote students not in this list" id="promoteBtn"/>
+            </form>
+        </div>
+        </div>
+    </div>
+    <div class="student_search">
+    <form id="search_student">
+        {% csrf_token %}
+        <input type="text" id="query" name="query" placeholder="search student by name"/>
+        <select id="student_class" name="classz">
+            {% if school.classes %}
+                {% for class in school.classes.all %}
+                    <option value="{{ class.name }}">{{ class.name }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+        <input type="submit" value="Search" id="search">
+    </form>
+    </div>
+    <div class="student_container">
+        <form id="deleteForm">
+            <select name="option">
+                <option value="deleteSelected">delete selected</option>
+            </select>
+            <input type="submit" value="OK!" id="deleteSelectedBtn"/>
+        </form>
+        <table>
+            <tr class="student_row">
+                <th><input type="checkbox" id="selectCheckbox"/></th>
+                <th>S/N</th>
+                <th>REGISTRATION NUMBER</th>
+                <th>FULL NAME</th>
+                <th>GENDER</th>
+                <th>CLASS</th>
+            </tr>
+            <tbody id='tbody'>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="paging">
+    </div>
+<script src="{% static 'js/studentPage.js' %}"></script>
+{% endblock %}

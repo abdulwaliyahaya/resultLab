@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% block heading %}ResultLab School Registration {% endblock %}
+{% block centered %}
+<form method="post" action="{% url 'register-school' %}">
+  {% csrf_token %}
+  {% if form.errors %}
+  <div class="auth_error">Oops.... an error occurred!</div>
+  {% endif %}
+  {{ form.username.label_tag }}<br/>
+  {{ form.username }}<br/><br/>
+  {{ form.password.label_tag }}<br/>
+  {{ form.password }}<br/><br/>
+  {{ form.password_second.label_tag }}<br/>
+  {{ form.password_second }}<br/><br/>
+  {{ form.email.label_tag }}<br/>
+  {{ form.email }}<br/><br/>
+  {{ form.school_name.label_tag }}<br/>
+  {{ form.school_name }}<br/><br/>
+  {{ form.address.label_tag }}<br/>
+  {{ form.address }}<br/><br/>
+
+  <input type="submit" value="Register"/>
+</form>
+{% endblock %}

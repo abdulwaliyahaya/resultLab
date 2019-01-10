@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Students | ResultLab{% endblock %}
+{% block areaTitle %}Student Area{% endblock %}
+{% block main_content %}
+    {% csrf_token %}
+    <div class="student_container">
+    <div class="result_heading">
+        <div>
+            <span><h6>Registration Number: <span><b id="username">{{ student.username }}</b></span></h6> </span><br/>
+            <span><h6>Full Name: <span><b>{{ student.get_full_name }}</b></span></h6> </span><br/>
+            <span><h6>Gender: <span><b>{{ student.user_students.gender }}</b></span></h6> </span><br/>
+            <span><h6>Class: <span><b>{{ student.user_students.student_class }}</b></span></h6> </span><br/>
+        </div>
+
+    </div>
+    <table>
+        <tr class="student_row">
+            <th>S/N</th>
+            <th>NAME</th>
+            <th>CLASS</th>
+            <th>TERM</th>
+            <th>SESSION</th>
+        </tr>
+        <tbody id='tbody'>
+
+        </tbody>
+    </table>
+    <input type="submit" value="Go Back" style="width: 100%" id="history_back"/>
+    <script src="{% static 'js/student-results.js' %}"></script>
+{% endblock %}

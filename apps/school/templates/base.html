@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body>
+  <article>
+    <section class="col-md-2" id="sidebar">
+      <header>
+      <h1>resultlab</h1>
+      </header>
+      <div id="nav-section">
+        <div id="profile">
+          <a href="{% url 'setting-home' %}">
+              {% if school.logo %}
+                <img src="{{ school.logo.url }}" class="pro_pic" id="pro_pic"/>
+                <br/>
+               {% else %}
+                  <div class="pro_pic" style="background: #f7f7f7"></div>
+              {% endif %}
+            <h6 id="school_name">{{ school.name }}</h6>
+          </a>
+        </div>
+        <ul id="navigation">
+          <li><a href="{% url 'school-overview' %}" id="overview_id"><img src="{% static 'img/speed_white.png' %}"/> Overview</a></li>
+          <li><a href="{% url 'student-home' %}" id="student_id"><img src="{% static 'img/student_white.png' %}"/> Students</a></li>
+          <li><a href="{% url 'result-home' %}" id="result_id"><img src="{% static 'img/result_white.png' %}"/> Result</a></li>
+          <li><a href="{% url 'setting-home' %}" id="setting_id"><img src="{% static 'img/settings_white.png' %}"/> Settings</a></li>
+        </ul>
+      </div>
+    </section>
+    <section class="col-md-10" id="mainbar">
+      <header>
+        <h1>{% block areaTitle %}{% endblock %}</h1>
+        <ul id="navside">
+          <li><a href="{% url 'logout' %}"><img src="{% static 'img/logout_white.png' %}" /></a></li>
+        </ul>
+      </header>
+      <div class="main_content">
+          {% block main_content %}
+          {% endblock %}
+      </div>
+    </section>
+  </article>
+  {% csrf_token %}
+<script src="{% static 'js/ui.js' %}"></script>
+<script src="{% static 'js/ajax.js' %}"></script>
+</body>
+</html>

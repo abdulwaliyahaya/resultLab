@@ -1,0 +1,7 @@
+{% extends 'base2.html' %}
+{% block heading %}Registration Successful {% endblock %}
+{% block centered %}
+    <div class="reg_container"><b>{{ name }}</b> had been registered successfully with the username <b>{{ username }}</b>.
+    Thank you for joining us, preparing your students result is actually easier than you think, login now!<br/>
+    <a href="{% url 'login' %}" class="reg_success_button">Login Now!</a></div>
+{% endblock %}
