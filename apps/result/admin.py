@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.school.models import *
+from apps.result.models import *
 from apps.accounts.models import *
 
 admin.site.register(Subject)

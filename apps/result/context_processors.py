@@ -4,12 +4,12 @@ from apps.accounts.models import *
 
 def school(request):
     request_path = request.path
-    if request_path.startswith('/school'):
+    if request_path.startswith('/result'):
         try:
             school = School.objects.get(user=request.user)
         except School.DoesNotExist:
-            raise Http404('This account is not linked to any school')
-        return {'school': school}
+            raise Http404('This account is not linked to any result')
+        return {'result': school}
     else:
         return {}
 

@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0013_student_gender'),
-        ('school', '0004_resultsheet_school'),
+        ('result', '0004_resultsheet_school'),
     ]
 
     operations = [

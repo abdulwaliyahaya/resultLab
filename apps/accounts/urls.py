@@ -22,7 +22,7 @@ urlpatterns = [
     path('login', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('login-redirect', login_redirect, name='login_redirect'),
-    path('register-school', register_school, name='register-school'),
+    path('register-result', register_school, name='register-result'),
     path('registration-successful/<username>/', registration_successful, name='registration-complete'),
     path('recover-password', recover_password, name='recover_password'),
     path('change-password', change_password, name='change_password'),

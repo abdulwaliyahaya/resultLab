@@ -15,9 +15,9 @@ class Migration(migrations.Migration):
             options={'ordering': ['name']},
         ),
         migrations.AlterField(
-            model_name='school',
+            model_name='result',
             name='logo',
-            field=models.ImageField(upload_to='school/logo/%Y/%m/%d/'),
+            field=models.ImageField(upload_to='result/logo/%Y/%m/%d/'),
         ),
         migrations.AlterField(
             model_name='subject',

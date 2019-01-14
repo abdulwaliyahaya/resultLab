@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='school',
+            model_name='result',
             name='wallet',
             field=models.FloatField(default=0.0),
         ),

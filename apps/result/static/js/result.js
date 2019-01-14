@@ -112,6 +112,9 @@ function generateSpreadSheet(subjects, students) {
 
     }
 
+    window.scrollTo(0,0);
+    document.getElementsByClassName('main_result_div')[0].removeChild(document.getElementById('resultHomeForm'))
+
 }
 function sendSpreadSheetData(){
     var studentResultTable = document.getElementsByTagName('table')[0];

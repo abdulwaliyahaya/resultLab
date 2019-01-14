@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    SCHOOL = 'school'
+    SCHOOL = 'result'
     STUDENT = 'student'
     USERTYPES = ((SCHOOL, 'School'),
                  (STUDENT, 'Student')
@@ -28,10 +28,10 @@ class School(models.Model):
              )
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
-                                related_name='school')
+                                related_name='result')
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='school/logo/%Y/%m/%d/')
+    logo = models.ImageField(upload_to='result/logo/%Y/%m/%d/')
     wallet = models.FloatField(default=0.00)
     date = models.DateTimeField(auto_now_add=True)
     current_term = models.CharField(max_length=50, default='first term', choices=TERMS)

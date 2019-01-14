@@ -1,5 +1,5 @@
 from apps.accounts.models import *
-from apps.school.models import *
+from apps.result.models import *
 
 
 def write_to_database(result_sheet, student_result):

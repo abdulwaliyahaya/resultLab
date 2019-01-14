@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('attendance', models.IntegerField()),
                 ('remark', models.CharField(max_length=300)),
                 ('date', models.DateField(auto_now_add=True)),
-                ('result_sheet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='result_sheet', to='school.ResultSheet')),
+                ('result_sheet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='result_sheet', to='apps.result.ResultSheet')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('score', models.IntegerField()),
                 ('position', models.IntegerField()),
-                ('student_result_sheet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='student_sheet', to='school.StudentResultSheet')),
+                ('student_result_sheet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='student_sheet', to='apps.result.StudentResultSheet')),
                 ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.Subject')),
             ],
             options={

@@ -10,8 +10,8 @@ from apps.accounts.forms import *
 @login_required
 def login_redirect(request):
     user = request.user
-    if user.usertype == 'school':
-        return redirect(reverse('school-overview'))
+    if user.usertype == 'result':
+        return redirect(reverse('result-overview'))
     elif user.usertype == 'student':
         return redirect(reverse(''))
     else:
@@ -32,7 +32,7 @@ def register_school(request):
             user = User.objects.create_user(username=username,
                                             email=email,
                                             password=password)
-            user.usertype = 'school'
+            user.usertype = 'result'
             user.save()
             school = School(user=user,
                             name=school_name,

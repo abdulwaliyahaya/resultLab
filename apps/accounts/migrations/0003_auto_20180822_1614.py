@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             name='user',
         ),
         migrations.AddField(
-            model_name='school',
+            model_name='result',
             name='current_term',
             field=models.CharField(choices=[('first term', 'First Term'), ('second term', 'Second Term'), ('third term', 'Third Term')], default='', max_length=50),
             preserve_default=False,
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='subject',
-            name='school',
+            name='result',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subjects', to='accounts.School'),
         ),
     ]

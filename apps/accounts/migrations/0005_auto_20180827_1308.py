@@ -23,13 +23,13 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.AlterField(
-            model_name='school',
+            model_name='result',
             name='current_term',
             field=models.CharField(choices=[('first term', 'First Term'), ('second term', 'Second Term'), ('third term', 'Third Term')], default='first term', max_length=50),
         ),
         migrations.AddField(
             model_name='class',
-            name='school',
+            name='result',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='classes', to='accounts.School'),
         ),
     ]

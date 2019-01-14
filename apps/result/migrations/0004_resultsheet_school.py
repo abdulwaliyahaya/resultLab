@@ -8,13 +8,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0013_student_gender'),
-        ('school', '0003_auto_20181001_2102'),
+        ('result', '0003_auto_20181001_2102'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='resultsheet',
-            name='school',
+            name='result',
             field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='accounts.School'),
             preserve_default=False,
         ),

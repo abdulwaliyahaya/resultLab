@@ -11,13 +11,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='school',
+            model_name='result',
             name='current_session',
             field=models.CharField(default='aha', max_length=100),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='school',
+            model_name='result',
             name='current_term',
             field=models.CharField(choices=[('first term', 'First Term'), ('second term', 'Second Term'), ('third term', 'Third Term')], default='first term', max_length=50),
         ),

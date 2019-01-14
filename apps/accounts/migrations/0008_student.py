@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('home_address', models.CharField(max_length=100)),
                 ('parent_phone', models.IntegerField()),
-                ('passport', models.ImageField(upload_to='school/logo/%Y/%m/%d/')),
+                ('passport', models.ImageField(upload_to='result/logo/%Y/%m/%d/')),
                 ('student_class', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='class_students', to='accounts.Class')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='students', to=settings.AUTH_USER_MODEL)),
             ],

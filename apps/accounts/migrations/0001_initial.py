@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
                 ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
-                ('usertype', models.CharField(choices=[('school', 'School'), ('student', 'Student')], max_length=20)),
+                ('usertype', models.CharField(choices=[('result', 'School'), ('student', 'Student')], max_length=20)),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.Group', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.Permission', verbose_name='user permissions')),
             ],
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ('logo', models.ImageField(upload_to='logo')),
                 ('wallet', models.FloatField()),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='school', to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='result', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'Schools',

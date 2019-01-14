@@ -3,14 +3,15 @@ from django.shortcuts import render
 from django.http import *
 from django.db.models import Q
 from apps.accounts.models import *
-from apps.school.models import *
+from apps.result.models import *
 from django.db import IntegrityError
 from django.core.paginator import Paginator
-from apps.school.forms import *
+from apps.result.forms import *
 from scripts import result as rs, utils
 
 
 def overview(request):
+
     school = School.objects.get(user=request.user)
     result_sheets = ResultSheet.objects.filter(school=school)
     student_results = []
@@ -36,17 +37,18 @@ def overview(request):
 
 
 def result_home(request):
+
     return render(request, 'result.html', {})
 
 
 def process_result(request):
+
     request_data = json.loads(request.body)
     result_data = request_data['result']
     result_data[0].pop(0)
     session = request_data['session']
     term = request_data['term']
-    classz = request_data['classz']
-    classz = Class.objects.get(name=classz)
+    classz = Class.objects.get(name=request_data['classz'])
     result = rs.Compiler(result_data)
     result_sheet = ResultSheet(name='{} {} {}'.format(classz, term, session),
                                session=session,
@@ -65,6 +67,7 @@ def process_result(request):
 
 
 def delete_results(request):
+
     result_list = json.loads(request.body)['resultList']
     school = School.objects.get(user=request.user)
     for result in result_list:
@@ -74,47 +77,39 @@ def delete_results(request):
 
 
 def result_list(request):
+
     return render(request, 'result-list.html', {})
 
 
 def class_result(request, result_id):
+
     result_sheet = ResultSheet.objects.get(school=School.objects.get(user=request.user), id=result_id)
-    school_name = School.objects.get(user=request.user).name
-    classz = result_sheet.classz
-    term = result_sheet.term
-    session = result_sheet.session
-    date = result_sheet.date_created
     subjects = [subject.name for subject in result_sheet.subjects.all()]
     context = {
         'subjects': subjects,
-        'school_name': school_name,
-        'term': term,
-        'session': session,
-        'date': date,
-        'classz': classz
+        'school_name': School.objects.get(user=request.user).name,
+        'term': result_sheet.term,
+        'session': result_sheet.session,
+        'date': result_sheet.date_created,
+        'classz': result_sheet.classz
     }
     return render(request, 'indidual-result.html', context)
 
 
 def class_result_data(request, result_id):
+
     result_sheet = ResultSheet.objects.get(school=School.objects.get(user=request.user), id=result_id)
     subjects = [subject.name for subject in result_sheet.subjects.all()]
     student_result_sheet = StudentResultSheet.objects.filter(result_sheet=result_sheet)
     results = []
     for student_result in student_result_sheet:
-        total_score = student_result.total_score
-        position = student_result.position
-        average = student_result.average
-        attendance = student_result.attendance
-        remark = student_result.remark
-        overall_data = [total_score, average, position, attendance, remark]
+        overall_data = [student_result.total_score, student_result.average,
+                        student_result.position, student_result.attendance, student_result.remark]
         subject_results = student_result.student_sheet.all()
         student_data = []
         for subject in subject_results:
-            pos = subject.position
-            sub_score = subject.score
-            student_data.append(sub_score)
-            student_data.append(pos)
+            student_data.append(subject.score)
+            student_data.append(subject.position)
         student_data.extend(overall_data)
         student_data.insert(0, student_result.user.get_full_name())
         student_data.insert(0, student_result.user.username)
@@ -138,29 +133,21 @@ def get_result(request):
         result_list = ResultSheet.objects.filter(school=School.objects.get(user=request.user),
                                                  classz=Class.objects.get(school=School.objects.get(user=request.user),
                                                                           name=classz))
-    if not classz:
+    else:
         result_list = ResultSheet.objects.filter(school=School.objects.get(user=request.user))
         req_class = ''
 
     results = []
     for result in result_list:
-        name = result.name
-        session = result.session
-        term = result.term
-        classz = result.classz.name
-        result_id = result.id
-        individual_results = [name, classz, term, session, result_id]
+        individual_results = [result.name, result.classz.name, result.term, result.session, result.id]
         results.append(individual_results)
     for num, result in enumerate(results, start=1):
         results[num - 1].insert(0, num)
     paging = Paginator(results, ITEMS_PER_PAGE)
-    num_of_pages = paging.num_pages
-    requested_page = page
-    result_list = paging.page(page)
-    result_list = result_list.object_list
+    result_list = paging.page(page).object_list
     data = {
-        'num_of_pages': num_of_pages,
-        'requested_page': requested_page,
+        'num_of_pages': paging.num_pages,
+        'requested_page': page,
         'results': result_list,
         'classz': req_class
     }
@@ -185,20 +172,19 @@ def student_list(request):
     query = data['query']
     page = data['page']
     classz = data['classz']
-    ITEMS = 50
-    try:
-        school = School.objects.get(user=request.user)
-    except School.DoesNotExist:
-        raise Http404("This account is not linked to any school")
-    if query == '' and classz == '':
+    ITEMS_PER_PAGE = 50
+    school = School.objects.get(user=request.user)
+    if not query and not classz:
         students = Student.objects.filter(school=school)
-    if query:
-        students = Student.objects.filter(Q(user__first_name__istartswith=query) | Q(user__last_name__istartswith=query)
-                                          )
-    if classz:
+    elif query:
+        students = Student.objects.filter(Q(user__first_name__istartswith=query) |
+                                          Q(user__last_name__istartswith=query)
+                                          ).filter(school=school)
+    elif classz:
         clas = Class.objects.get(school=school, name=classz)
         students = Student.objects.filter(school=school, student_class=clas)
-    if query and classz:
+    else:
+        # if we got here... both class and query has a value
         clas = Class.objects.get(school=school, name=classz)
         students = Student.objects.filter(
                                           Q(user__first_name__istartswith=query
@@ -207,22 +193,15 @@ def student_list(request):
     student_list = []
     for student in students:
         user = student.user
-        reg_number = user.username
-        full_name = user.get_full_name()
-        gender = student.gender
-        clasz = student.student_class.name
-        student_details = [reg_number, full_name, gender, clasz]
+        student_details = [user.username, user.get_full_name(), student.gender, student.student_class.name]
         student_list.append(student_details)
     for num, i in enumerate(student_list, start=1):
         student_list[num - 1].insert(0, num)
-    paging = Paginator(student_list, ITEMS)
-    num_of_pages = paging.num_pages
-    requested_page = page
-    students = paging.page(page)
-    students = students.object_list
+    paging = Paginator(student_list, ITEMS_PER_PAGE)
+    students = paging.page(page).object_list
     data = {
-        'num_of_pages': num_of_pages,
-        'requested_page': requested_page,
+        'num_of_pages': paging.num_pages,
+        'requested_page': page,
         'students': students,
         'query': query,
         'classz': classz
@@ -298,8 +277,7 @@ def remove_students(request):
     school = School.objects.get(user=request.user)
     for reg_id in reg_ids:
         user = User.objects.get(username=reg_id)
-        student_to_delete = Student.objects.get(user=user, school=school)
-        student_to_delete.delete()
+        user.delete()
 
     return HttpResponse('Successful')
 
@@ -372,10 +350,7 @@ def set_logo_name(request):
     except:
         logo = None
     user = request.user
-    try:
-        school = School.objects.get(user=user)
-    except School.DoesNotExist:
-        raise Http404("This account is not linked to any school")
+    school = School.objects.get(user=user)
     school.name = name
     school.address = address
     if logo is not None:
@@ -392,10 +367,7 @@ def set_logo_name(request):
 
 
 def update_current_term_ui(request):
-    try:
-        school = School.objects.get(user=request.user)
-    except School.DoesNotExist:
-        pass
+    school = School.objects.get(user=request.user)
     current_term = school.current_term
     current_session = school.current_session
     data = {
@@ -409,10 +381,7 @@ def set_current_term(request):
     data = json.loads(request.body)
     current_term = data['current_term']
     current_session = data['current_session']
-    try:
-        school = School.objects.get(user=request.user)
-    except School.DoesNotExist:
-        raise Http404('This account is not linked to any school')
+    school = School.objects.get(user=request.user)
     school.current_term = current_term
     school.current_session = current_session
     school.save()
