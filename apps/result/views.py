@@ -276,8 +276,11 @@ def remove_students(request):
     reg_ids = json.loads(request.body)['studentDeleteList']
     school = School.objects.get(user=request.user)
     for reg_id in reg_ids:
-        user = User.objects.get(username=reg_id)
-        user.delete()
+        if school.students.filter(user__username=reg_id).exists():
+            user = User.objects.get(username=reg_id)
+            user.delete()
+        else:
+            return HttpResponseForbidden("You are not allowed to remove Students not in your School")
 
     return HttpResponse('Successful')
 
