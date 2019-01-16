@@ -4,7 +4,7 @@ from apps.accounts.models import *
 
 def school(request):
     request_path = request.path
-    if request_path.startswith('/result'):
+    if request_path.startswith('/school'):
         try:
             school = School.objects.get(user=request.user)
         except School.DoesNotExist:

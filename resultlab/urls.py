@@ -23,7 +23,7 @@ from resultlab.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name='homepage'),
-    path('result/', include('apps.result.urls')),
+    path('school/', include('apps.result.urls')),
     path('accounts/', include('apps.accounts.urls')),
 ]
 

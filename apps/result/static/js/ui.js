@@ -6,7 +6,7 @@
         style.background = '#2C3B41';
         style.borderLeft = '4px solid #2e8b57';
         style.opacity = '1';
-};
+    };
     var currentUrl = window.location.href;
     var domain = window.location.host;
     var path = currentUrl.replace(domain, '');
