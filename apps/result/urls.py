@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from apps.result.views import *
 urlpatterns = [
-    path('', overview, name='result-overview'),
+    path('', overview, name='school-overview'),
     path('result', result_home, name='result-home'),
     path('process-result', process_result, name='process-result'),
     path('result-list', result_list, name='result-list'),

@@ -9,7 +9,7 @@ def school(request):
             school = School.objects.get(user=request.user)
         except School.DoesNotExist:
             raise Http404('This account is not linked to any result')
-        return {'result': school}
+        return {'school': school}
     else:
         return {}
 

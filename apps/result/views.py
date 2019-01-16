@@ -28,6 +28,7 @@ def overview(request):
     female_student_percent = str(round((students.filter(gender='FEMALE').count() / student_count) * 100, 2)) + '%'
     context = {
         'student_count': student_count,
+        'students': students,
         'percentages_pass_fail': percentages_pass_fail,
         'male_student_percent': male_student_percent,
         'female_student_percent': female_student_percent

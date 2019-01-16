@@ -10,7 +10,7 @@ from apps.accounts.forms import *
 @login_required
 def login_redirect(request):
     user = request.user
-    if user.usertype == 'result':
+    if user.usertype == 'school':
         return redirect(reverse('result-overview'))
     elif user.usertype == 'student':
         return redirect(reverse(''))
