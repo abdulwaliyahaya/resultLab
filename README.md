@@ -11,7 +11,6 @@ The way results are been compiled in most schools in Nigeria is hectic, tiring a
 To use this web app, clone the repository. With the aid of your command prompt, navigate to the folder. run `python manage.py runserver`.
 
 After the development server starts, visit `http://127.0.0.1:8000/` on your browser.
-Login details - username =  resultLab, password = resultLab
 
 # TODOs
 - addition of Student app so student can check their result
