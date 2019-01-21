@@ -11,7 +11,7 @@ from apps.accounts.forms import *
 def login_redirect(request):
     user = request.user
     if user.usertype == 'school':
-        return redirect(reverse('result-overview'))
+        return redirect(reverse('school-overview'))
     elif user.usertype == 'student':
         return redirect(reverse(''))
     else:

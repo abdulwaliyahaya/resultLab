@@ -2,17 +2,29 @@
 {% block title %}Dashboard | ResultLab{% endblock %}
 {% block areaTitle %}Admin Dashboard{% endblock %}
 {% block main_content %}
-    walinated
-    <div id="add_students_frame" class="overview">
-        <div>
-        fjkfdjkddddddddddddddddd
+    <div id="overview_frame" class="overview">
+        <div id="overviewDetail">
+            <div id="studentPercent">
+                <div id="malePercent" style="width: {{ male_student_percent }}; height: 50px; background: #0b2e13; margin-bottom: 50px">
+                    Males ({{ male_student_percent }})
+                </div>
+                <div id="femalePercent" style="width: {{ female_student_percent }}; height: 50px; background: #0c5460">
+                    Females ({{ female_student_percent }})
+                </div>
+            </div>
+            <div id="resultDetail">
+                <b>NOTICE TO DEVELOPERS</b><br/>
+                This version of the project is complete except for this overview dashboard design.
+                If you would like to help by making this page beautiful, check the overview views function and see what
+                it returns... you can also make a pull request and make change to the views so you get what you want!
+            </div>
         </div>
-    <div>
+    <div id="studentList">
         {% if students %}
             <ul>
-            {% for student in students %}
-                <li>{{ student.user.get_full_name }} ({{ student.gender }})</li>
-            {% endfor %}
+                {% for student in students %}
+                    <li><a href="{% url 'student-results' student.user.username %}">{{ student.user.get_full_name }} ({{ student.gender }})</a></li>
+                {% endfor %}
             </ul>
         {% endif %}
     </div>

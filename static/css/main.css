@@ -533,3 +533,33 @@ table, th, td{
     margin: 0;
     padding: 0;
 }
+#overview_frame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#studentList {
+    background: #f1f1f1;
+    margin-right: 30px;
+}
+#studentList ul {
+    list-style: none;
+    padding: 10px;
+    background: #fff;
+    margin-right: 10px;
+}
+#studentList ul li {
+    padding: 10px;
+}
+#studentPercent {
+    width: 500px;
+    height: 200px;
+    background: #fff;
+    color: #fff;
+}
+#resultDetail {
+    width: 500px;
+    height: 350px;
+    background: #fff;
+    color: red;
+}
